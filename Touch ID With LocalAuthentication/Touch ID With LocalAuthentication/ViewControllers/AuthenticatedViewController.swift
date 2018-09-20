@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 class AuthenticatedViewController: UIViewController {
 
@@ -22,7 +23,8 @@ class AuthenticatedViewController: UIViewController {
     }
     
     @IBAction func onTappingAuthenticateMeButton(_ sender: Any) {
-        print ("show touch id for authentication")
+        print (">> show touch id for authentication")
+        self.authenticateUserWithTouchID()
     }
     
     /*
@@ -35,4 +37,41 @@ class AuthenticatedViewController: UIViewController {
     }
     */
 
+}
+
+extension AuthenticatedViewController {
+    func authenticateUserWithTouchID () {
+        let context: LAContext = LAContext()
+        
+        // reason for authentication
+        let myLocalizedReasonString = "Authenticate to access your app account."
+        
+        // error variable
+        var authError: NSError?
+        
+        // XXX: so there should be a else statement too, check it out
+        if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &authError)
+        {
+            print ("Authentication Possible")
+            
+            // if closure uses self, ensure that there is no ratain cycle
+            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: myLocalizedReasonString) { (successBool, evaluateError) in
+                // if touch id authentication is successful
+                if successBool
+                {
+                    // always do UI activity in UI thread so that eventhough this is in a closure, it gets high priority
+                    DispatchQueue.main.async {
+                        print (">> Authentication successful")
+                        // do things here
+                    }
+                }
+                else // touch id authentication is not successful
+                {
+                    if let error = evaluateError {
+                        print (error.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
 }
