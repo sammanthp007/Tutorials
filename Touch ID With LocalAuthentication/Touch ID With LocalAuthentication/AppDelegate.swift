@@ -34,7 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-        print (">> App was brought to foreground.")
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -76,13 +75,60 @@ extension AppDelegate {
                         self?.window?.makeKeyAndVisible()
                     }
                 }
-                else // touch id authentication is not successful
-                {
-                    if let error = evaluateError {
-                        print (error.localizedDescription)
-                    }
-                }
             }
         }
+        else // touch id authentication is not successful
+        {
+            if let error = authError
+            {
+                let message = self.showErrorMessageForLAErrorCode( errorCode: error.code )
+                print (">> Auth error message: ", message)
+            }
+        }
+    }
+    
+    func showErrorMessageForLAErrorCode (errorCode: Int ) -> String {
+        var message = ""
+
+        switch errorCode {
+        case LAError.appCancel.rawValue:
+            message = "Authentication was cancelled by application."
+            
+        case LAError.authenticationFailed.rawValue:
+            message = "User failed to provide valid credentials."
+            
+        case LAError.invalidContext.rawValue:
+            message = "The context is invalid."
+            
+        case LAError.passcodeNotSet.rawValue:
+            message = "Passcode has not been set on the device."
+            
+        case LAError.systemCancel.rawValue:
+            message = "Authentication was canceled by system (e.g. another application went to foreground)."
+            
+        // XXX: checkout the behavior for this error code and figure how to configure the max touch id
+        case LAError.biometryLockout.rawValue:
+            message = "Authentication was not successful, because there were too many failed biometry attempts and biometry is now locked."
+            
+        case LAError.biometryNotEnrolled.rawValue:
+            message = "Authentication could not start, because biometry has no enrolled identities."
+            
+        case LAError.biometryNotAvailable.rawValue:
+            message = "Authentication could not start, because biometry is not available on the device."
+            
+        case LAError.userCancel.rawValue:
+            message = "Authentication was canceled by user (e.g. tapped Cancel button)."
+            
+        case LAError.userFallback.rawValue:
+            message = "Authentication was canceled, because the user tapped the fallback button (Enter Password)."
+            
+        case LAError.notInteractive.rawValue:
+            message = "Authentication failed, because it would require showing UI which has been forbidden by using interactionNotAllowed property."
+            
+        default:
+            message = "Authentication with Touch ID failed, but we did not find error code on LAError object."
+        }
+        
+        return message
     }
 }
