@@ -15,10 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         print (">> App was launched")
+        self.displayOutermostViewController()
         self.authenticateUserWithTouchID()
         return true
     }
@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        self.displayOutermostViewController()
         self.authenticateUserWithTouchID()
     }
 
@@ -48,6 +49,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate {
+    func displayOutermostViewController () {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let authenticatedVC = storyboard.instantiateViewController(withIdentifier: "OutermostViewController") as! OutermostViewController
+        if let window = self.window {
+            let navigationController: UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+            navigationController.viewControllers = [authenticatedVC]
+            window.rootViewController = navigationController
+        }
+    }
+    
     func displayAuthenticatedViewController () {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let authenticatedVC = storyboard.instantiateViewController(withIdentifier: "AuthenticatedViewController") as! AuthenticatedViewController
@@ -64,7 +75,6 @@ extension AppDelegate {
         context.localizedCancelTitle = "I give up"
         // for fall back (e.g use passcode that appears after first failure
         context.localizedFallbackTitle = "I prefer Passcode"
-        context.maxBiometryFailures = 5
         
         // for reason to ask for authentication
         let myLocalizedReasonString = "So we know you have given consent to access your personal app data."
