@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         print (">> App was launched")
+        self.authenticateUserWithTouchID()
         return true
     }
 
@@ -39,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         print (">> App became ACTIVE")
-        self.authenticateUserWithTouchID()
+//        self.authenticateUserWithTouchID()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -48,10 +49,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate {
+    func displayAuthenticatedViewController () {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let authenticatedVC = storyboard.instantiateViewController(withIdentifier: "AuthenticatedViewController") as! AuthenticatedViewController
+        if let window = self.window {
+            let navigationController: UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+            navigationController.viewControllers = [authenticatedVC]
+            window.rootViewController = navigationController
+        }
+    }
+    
     func authenticateUserWithTouchID () {
         let context: LAContext = LAContext()
+        // for cancel button (defaults to "cancel"
+        context.localizedCancelTitle = "I give up"
+        // for fall back (e.g use passcode that appears after first failure
+        context.localizedFallbackTitle = "I prefer Passcode"
         
-        // reason for authentication
+        // for reason to ask for authentication
         let myLocalizedReasonString = "Authenticate to access your app account."
         
         // error variable
@@ -69,11 +84,17 @@ extension AppDelegate {
                     DispatchQueue.main.async {
                         print (">> Authentication successful")
                         // load the storyboard and the viewcontroller
-                        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                        let authenticatedVC = storyBoard.instantiateViewController(withIdentifier: "AuthenticatedViewController") as! AuthenticatedViewController
-                        self?.window?.rootViewController = UINavigationController(rootViewController: authenticatedVC)
-                        self?.window?.makeKeyAndVisible()
+                        self?.displayAuthenticatedViewController()
                     }
+                }
+                else
+                {
+                    guard let error = evaluateError else {
+                        print ("not successful, no error either while doing Touch ID authentication. Hmm")
+                        return
+                    }
+                    
+                    print (self?.showErrorMessageForLAErrorCode(errorCode: error._code) ?? "There was error")
                 }
             }
         }

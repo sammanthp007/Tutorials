@@ -15,6 +15,7 @@ class AuthenticatedViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.view.backgroundColor = UIColor.gray
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,7 +25,6 @@ class AuthenticatedViewController: UIViewController {
     
     @IBAction func onTappingAuthenticateMeButton(_ sender: Any) {
         print (">> show touch id for authentication")
-        
     }
     
     /*
