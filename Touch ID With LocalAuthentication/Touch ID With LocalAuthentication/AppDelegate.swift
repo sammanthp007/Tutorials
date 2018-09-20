@@ -65,9 +65,10 @@ extension AppDelegate {
         context.localizedCancelTitle = "I give up"
         // for fall back (e.g use passcode that appears after first failure
         context.localizedFallbackTitle = "I prefer Passcode"
+        context.maxBiometryFailures = 5
         
         // for reason to ask for authentication
-        let myLocalizedReasonString = "Authenticate to access your app account."
+        let myLocalizedReasonString = "So we know you have given consent to access your personal app data."
         
         // error variable
         var authError: NSError?

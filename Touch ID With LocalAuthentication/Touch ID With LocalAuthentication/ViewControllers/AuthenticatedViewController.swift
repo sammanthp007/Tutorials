@@ -23,8 +23,8 @@ class AuthenticatedViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onTappingAuthenticateMeButton(_ sender: Any) {
-        print (">> show touch id for authentication")
+    @IBAction func onTappingIamAwesomeButton(_ sender: Any) {
+        print (">> I am awesome.")
     }
     
     /*

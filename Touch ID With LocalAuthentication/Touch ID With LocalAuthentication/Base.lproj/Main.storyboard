@@ -19,14 +19,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2n-jM-4nd">
-                                <rect key="frame" x="59" y="318.5" width="257" height="30"/>
-                                <state key="normal" title="I am an authenticated View Controller"/>
+                                <rect key="frame" x="114" y="128" width="147" height="30"/>
+                                <state key="normal" title="Print &quot;I am Awesome&quot;"/>
+                                <connections>
+                                    <action selector="onTappingIamAwesomeButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VFN-b1-UWV"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="m2n-jM-4nd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Agr-YF-BxR"/>
                             <constraint firstItem="m2n-jM-4nd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cZH-P2-sxj"/>
+                            <constraint firstItem="m2n-jM-4nd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="64" id="zIf-at-93E"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
