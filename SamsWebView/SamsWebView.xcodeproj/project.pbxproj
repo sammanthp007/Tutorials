@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		9CE120F92159A73A002C409B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE120F82159A73A002C409B /* AppDelegate.swift */; };
-		9CE120FB2159A73A002C409B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE120FA2159A73A002C409B /* ViewController.swift */; };
 		9CE120FE2159A73A002C409B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CE120FC2159A73A002C409B /* Main.storyboard */; };
 		9CE121002159A73B002C409B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE120FF2159A73B002C409B /* Assets.xcassets */; };
 		9CE121032159A73B002C409B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CE121012159A73B002C409B /* LaunchScreen.storyboard */; };
+		9CE1210C2159A7EB002C409B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE1210B2159A7EB002C409B /* MainViewController.swift */; };
+		9CE1210E2159A8C5002C409B /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE1210D2159A8C5002C409B /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9CE120F52159A73A002C409B /* SamsWebView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SamsWebView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE120F82159A73A002C409B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9CE120FA2159A73A002C409B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9CE120FD2159A73A002C409B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9CE120FF2159A73B002C409B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CE121022159A73B002C409B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9CE121042159A73B002C409B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CE1210B2159A7EB002C409B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		9CE1210D2159A8C5002C409B /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,23 @@
 		9CE120F72159A73A002C409B /* SamsWebView */ = {
 			isa = PBXGroup;
 			children = (
+				9CE1210A2159A7DA002C409B /* ViewControllers */,
 				9CE120F82159A73A002C409B /* AppDelegate.swift */,
-				9CE120FA2159A73A002C409B /* ViewController.swift */,
 				9CE120FC2159A73A002C409B /* Main.storyboard */,
 				9CE120FF2159A73B002C409B /* Assets.xcassets */,
 				9CE121012159A73B002C409B /* LaunchScreen.storyboard */,
 				9CE121042159A73B002C409B /* Info.plist */,
 			);
 			path = SamsWebView;
+			sourceTree = "<group>";
+		};
+		9CE1210A2159A7DA002C409B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9CE1210B2159A7EB002C409B /* MainViewController.swift */,
+				9CE1210D2159A8C5002C409B /* WebViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +146,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CE120FB2159A73A002C409B /* ViewController.swift in Sources */,
 				9CE120F92159A73A002C409B /* AppDelegate.swift in Sources */,
+				9CE1210E2159A8C5002C409B /* WebViewController.swift in Sources */,
+				9CE1210C2159A7EB002C409B /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
