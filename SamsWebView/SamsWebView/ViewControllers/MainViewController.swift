@@ -24,7 +24,7 @@ class MainViewController: UIViewController {
     @IBAction func onTappingOpenLink(_ sender: Any) {
         print ("Will open link")
         
-        let link: URL? = URL(string: "www.apple.com")
+        let link: URL? = URL(string: "https://www.apple.com/")
         let webViewController = WebViewController()
         webViewController.link = link
         self.navigationController?.pushViewController(webViewController, animated: true)

@@ -7,16 +7,50 @@
 //
 
 import UIKit
+import WebKit
 
 class WebViewController: UIViewController {
     
     var link: URL?
+    
+    var webView: WKWebView!
+    
+    override func loadView() {
+        // TODO: learn what this line is doing
+        /*
+            A collection of properties used to initialize a web view.
+         
+         Using the WKWebViewConfiguration class, you can determine how soon a webpage is rendered, how media playback is handled, the granularity of items that the user can select, and many other options.
+         
+         WKWebViewConfiguration is only used when a web view is first initialized. You cannot use this class to change the web view's configuration after it has been created.
+        */
+//        let webConfiguration = WKWebViewConfiguration()
+        // TODO: learn what options we have for frame
+        let frameOfWebView = CGRect(x: 10.0, y: 10.0, width: 300, height: 300)
+//        webView = WKWebView(frame: frameOfWebView, configuration: webConfiguration)
+        self.webView = WKWebView()
+        self.webView.navigationDelegate = self
+        // TODO: learn about uiDelegate - the WebViews user interface delegate
+//        webView.uiDelegate = self
+        self.view = webView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        print ("loaded with link: ", link?.absoluteString)
+        print ("loaded with link: \(link?.absoluteString ?? "Oops, did not find the link")")
+        
+        if let link = link
+        {
+            print ("Found the link")
+            let myRequest = URLRequest(url: link)
+            webView.load(myRequest)
+            webView.allowsBackForwardNavigationGestures = true
+        } else
+        {
+            print ("No link found")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,4 +69,14 @@ class WebViewController: UIViewController {
     }
     */
 
+}
+
+// TODO: learn about WKUIDelegate
+extension WebViewController: WKUIDelegate {
+    
+}
+
+// TODO: learn about WKNavigationDelegate
+extension WebViewController: WKNavigationDelegate {
+    
 }
