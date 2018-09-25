@@ -24,7 +24,7 @@ class WebViewController: UIViewController {
          
          WKWebViewConfiguration is only used when a web view is first initialized. You cannot use this class to change the web view's configuration after it has been created.
         */
-        let webConfiguration = WKWebViewConfiguration()
+//        let webConfiguration = WKWebViewConfiguration()
         // TODO: learn what options we have for frame
         // this does not even work, probably because we are assigning to controllers view
 //        let frameOfWebView = CGRect(x: 90.0, y: 90.0, width: 300, height: 300)
@@ -53,6 +53,13 @@ class WebViewController: UIViewController {
         {
             print ("No link found")
         }
+        
+        // Adding toolbar
+        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
+        
+        toolbarItems = [spacer, refresh]
+        navigationController?.isToolbarHidden = false
     }
 
     override func didReceiveMemoryWarning() {
