@@ -24,9 +24,11 @@ class WebViewController: UIViewController {
          
          WKWebViewConfiguration is only used when a web view is first initialized. You cannot use this class to change the web view's configuration after it has been created.
         */
-//        let webConfiguration = WKWebViewConfiguration()
+        let webConfiguration = WKWebViewConfiguration()
         // TODO: learn what options we have for frame
-        let frameOfWebView = CGRect(x: 10.0, y: 10.0, width: 300, height: 300)
+        // this does not even work, probably because we are assigning to controllers view
+//        let frameOfWebView = CGRect(x: 90.0, y: 90.0, width: 300, height: 300)
+//        webView = WKWebView(frame: .zero, configuration: webConfiguration)
 //        webView = WKWebView(frame: frameOfWebView, configuration: webConfiguration)
         self.webView = WKWebView()
         self.webView.navigationDelegate = self
