@@ -98,7 +98,16 @@ class SpotInfoViewController: UIViewController {
     weatherHideOrShowButton.setTitle(newButtonTitle, for: UIControlState())
 
     // TODO: Animate when animated == true
-    weatherInfoLabel.isHidden = shouldHideWeatherInfo
+    if animated
+    {
+        UIView.animate(withDuration: 0.3) {
+            self.weatherInfoLabel.isHidden = shouldHideWeatherInfo
+        }
+    }
+    else
+    {
+        weatherInfoLabel.isHidden = shouldHideWeatherInfo
+    }
   }
 
   @IBAction func wikipediaButtonTapped(_ sender: UIButton) {
