@@ -135,20 +135,25 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3eM-SJ-893">
                                         <rect key="frame" x="0.0" y="0.0" width="291" height="290.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WHY VISIT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORI-tY-KjD">
-                                                <rect key="frame" x="20" y="20" width="81.5" height="19.5"/>
-                                                <color key="backgroundColor" red="0.58881118880000005" green="1" blue="0.58881118880000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="&lt;whyVisitLabel&gt;" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7I7-MX-xvN" customClass="StackWidthLabel" customModule="VacationSpots" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="39.5" width="251" height="20.5"/>
-                                                <color key="backgroundColor" red="1" green="0.58823529409999997" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <color key="textColor" red="0.2199999988079071" green="0.2199999988079071" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2Y9-Iy-Odl">
+                                                <rect key="frame" x="20" y="20" width="251" height="40"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WHY VISIT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORI-tY-KjD">
+                                                        <rect key="frame" x="0.0" y="0.0" width="251" height="19.5"/>
+                                                        <color key="backgroundColor" red="0.58881118880000005" green="1" blue="0.58881118880000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="&lt;whyVisitLabel&gt;" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7I7-MX-xvN" customClass="StackWidthLabel" customModule="VacationSpots" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="19.5" width="251" height="20.5"/>
+                                                        <color key="backgroundColor" red="1" green="0.58823529409999997" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                        <color key="textColor" red="0.2199999988079071" green="0.2199999988079071" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WEATHER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGt-cb-Lyg">
                                                 <rect key="frame" x="20" y="80" width="76" height="19.5"/>
                                                 <color key="backgroundColor" red="0.58881118880000005" green="1" blue="0.58881118880000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -236,15 +241,15 @@
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="7I7-MX-xvN" firstAttribute="leading" secondItem="3eM-SJ-893" secondAttribute="leadingMargin" id="6DX-vp-Rpp"/>
-                                            <constraint firstItem="JGt-cb-Lyg" firstAttribute="top" secondItem="7I7-MX-xvN" secondAttribute="bottom" constant="20" id="8fi-GP-8t0"/>
+                                            <constraint firstItem="2Y9-Iy-Odl" firstAttribute="leading" secondItem="3eM-SJ-893" secondAttribute="leadingMargin" id="3Nb-Wi-x2i"/>
+                                            <constraint firstItem="2Y9-Iy-Odl" firstAttribute="top" secondItem="3eM-SJ-893" secondAttribute="topMargin" id="4nR-2M-DKx"/>
                                             <constraint firstItem="rai-yh-ty5" firstAttribute="leading" secondItem="3eM-SJ-893" secondAttribute="leadingMargin" id="B4B-Jb-Vyn"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="2Y9-Iy-Odl" secondAttribute="trailing" id="BCL-RQ-6cS"/>
                                             <constraint firstItem="1IH-zh-kjd" firstAttribute="top" secondItem="Y1v-Ex-D0u" secondAttribute="bottom" constant="20" id="CQS-Ui-XIz"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="Y1v-Ex-D0u" secondAttribute="trailing" id="K1g-MS-b5Q"/>
-                                            <constraint firstItem="7I7-MX-xvN" firstAttribute="trailing" secondItem="3eM-SJ-893" secondAttribute="trailingMargin" id="Npa-Bu-92G"/>
                                             <constraint firstItem="yK3-Tf-1ae" firstAttribute="leading" secondItem="3eM-SJ-893" secondAttribute="leadingMargin" id="Y1U-qR-6ED"/>
+                                            <constraint firstItem="JGt-cb-Lyg" firstAttribute="top" secondItem="2Y9-Iy-Odl" secondAttribute="bottom" constant="20" id="Ywx-1n-05d"/>
                                             <constraint firstItem="h9g-1Y-kSS" firstAttribute="trailing" secondItem="3eM-SJ-893" secondAttribute="trailingMargin" id="aCJ-Nb-ikH"/>
-                                            <constraint firstItem="7I7-MX-xvN" firstAttribute="top" secondItem="ORI-tY-KjD" secondAttribute="bottom" id="dMI-1H-pCo"/>
                                             <constraint firstItem="Y1v-Ex-D0u" firstAttribute="leading" secondItem="3eM-SJ-893" secondAttribute="leadingMargin" id="e1r-XT-mFp"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="1IH-zh-kjd" secondAttribute="trailing" id="epf-nX-5z4"/>
                                             <constraint firstItem="yK3-Tf-1ae" firstAttribute="top" secondItem="h9g-1Y-kSS" secondAttribute="bottom" constant="20" id="kbL-i7-Kie"/>
@@ -253,8 +258,6 @@
                                             <constraint firstItem="rai-yh-ty5" firstAttribute="top" secondItem="yK3-Tf-1ae" secondAttribute="bottom" id="rDC-tO-Cb1"/>
                                             <constraint firstItem="Ktb-bF-Vf4" firstAttribute="leading" secondItem="JGt-cb-Lyg" secondAttribute="trailing" constant="8" id="rYc-lx-bU0"/>
                                             <constraint firstItem="Y1v-Ex-D0u" firstAttribute="top" secondItem="rai-yh-ty5" secondAttribute="bottom" constant="20" id="rly-Qx-A0s"/>
-                                            <constraint firstItem="ORI-tY-KjD" firstAttribute="top" secondItem="3eM-SJ-893" secondAttribute="topMargin" id="s7N-jW-JNq"/>
-                                            <constraint firstItem="ORI-tY-KjD" firstAttribute="leading" secondItem="3eM-SJ-893" secondAttribute="leadingMargin" id="vIA-Lk-V7S"/>
                                             <constraint firstItem="h9g-1Y-kSS" firstAttribute="leading" secondItem="3eM-SJ-893" secondAttribute="leadingMargin" id="vuk-ae-7it"/>
                                             <constraint firstItem="h9g-1Y-kSS" firstAttribute="top" secondItem="JGt-cb-Lyg" secondAttribute="bottom" id="whV-fK-0xd"/>
                                             <constraint firstItem="1IH-zh-kjd" firstAttribute="leading" secondItem="3eM-SJ-893" secondAttribute="leadingMargin" id="woS-1Z-sCg"/>
@@ -289,13 +292,10 @@
                         <outlet property="whatToSeeLabel" destination="rai-yh-ty5" id="d1l-I7-evK"/>
                         <outlet property="whyVisitLabel" destination="7I7-MX-xvN" id="iou-lW-QOV"/>
                         <outletCollection property="backgroundColoredViews" destination="Ktb-bF-Vf4" collectionClass="NSMutableArray" id="Myf-ft-dh5"/>
-                        <outletCollection property="backgroundColoredViews" destination="7I7-MX-xvN" collectionClass="NSMutableArray" id="CKu-14-oWM"/>
                         <outletCollection property="backgroundColoredViews" destination="yK3-Tf-1ae" collectionClass="NSMutableArray" id="zun-a6-EPP"/>
-                        <outletCollection property="backgroundColoredViews" destination="ORI-tY-KjD" collectionClass="NSMutableArray" id="KED-Zr-uL7"/>
                         <outletCollection property="backgroundColoredViews" destination="JGt-cb-Lyg" collectionClass="NSMutableArray" id="ODB-Zm-F42"/>
                         <outletCollection property="backgroundColoredViews" destination="h9g-1Y-kSS" collectionClass="NSMutableArray" id="UEm-HF-9YW"/>
                         <outletCollection property="backgroundColoredViews" destination="rai-yh-ty5" collectionClass="NSMutableArray" id="iuZ-J8-iw1"/>
-                        <outletCollection property="headingLabels" destination="ORI-tY-KjD" collectionClass="NSMutableArray" id="oTB-Qc-s1y"/>
                         <outletCollection property="headingLabels" destination="JGt-cb-Lyg" collectionClass="NSMutableArray" id="qSs-f9-qyA"/>
                         <outletCollection property="headingLabels" destination="yK3-Tf-1ae" collectionClass="NSMutableArray" id="StY-8R-cx1"/>
                         <outletCollection property="backgroundColoredViews" destination="vi1-Tq-gH0" collectionClass="NSMutableArray" id="dJY-4L-AQm"/>
@@ -304,6 +304,9 @@
                         <outletCollection property="backgroundColoredViews" destination="qyy-tr-bB0" collectionClass="NSMutableArray" id="VeD-Fq-EhT"/>
                         <outletCollection property="headingLabels" destination="qyy-tr-bB0" collectionClass="NSMutableArray" id="6Yy-aX-Mjj"/>
                         <outletCollection property="backgroundColoredViews" destination="TxW-cB-BwZ" collectionClass="NSMutableArray" id="nbg-lc-NOw"/>
+                        <outletCollection property="backgroundColoredViews" destination="ORI-tY-KjD" collectionClass="NSMutableArray" id="KED-Zr-uL7"/>
+                        <outletCollection property="headingLabels" destination="ORI-tY-KjD" collectionClass="NSMutableArray" id="oTB-Qc-s1y"/>
+                        <outletCollection property="backgroundColoredViews" destination="7I7-MX-xvN" collectionClass="NSMutableArray" id="CKu-14-oWM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e2p-XL-PCg" userLabel="First Responder" sceneMemberID="firstResponder"/>
