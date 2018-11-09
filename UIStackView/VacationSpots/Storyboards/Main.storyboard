@@ -176,20 +176,25 @@
                                                     <action selector="weatherHideOrShowButtonTapped:" destination="uIW-zp-txd" eventType="touchUpInside" id="ddy-y0-jmP"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WHAT TO SEE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yK3-Tf-1ae">
-                                                <rect key="frame" x="20" y="140" width="105.5" height="19.5"/>
-                                                <color key="backgroundColor" red="0.58881118880000005" green="1" blue="0.58881118880000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="&lt;whatToSeeLabel&gt;" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rai-yh-ty5" customClass="StackWidthLabel" customModule="VacationSpots" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="159.5" width="251" height="20.5"/>
-                                                <color key="backgroundColor" red="1" green="0.58823529409999997" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <color key="textColor" red="0.2199999988079071" green="0.2199999988079071" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Bbb-Qf-RG5">
+                                                <rect key="frame" x="20" y="140" width="251" height="40"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WHAT TO SEE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yK3-Tf-1ae">
+                                                        <rect key="frame" x="0.0" y="0.0" width="251" height="19.5"/>
+                                                        <color key="backgroundColor" red="0.58881118880000005" green="1" blue="0.58881118880000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="&lt;whatToSeeLabel&gt;" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rai-yh-ty5" customClass="StackWidthLabel" customModule="VacationSpots" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="19.5" width="251" height="20.5"/>
+                                                        <color key="backgroundColor" red="1" green="0.58823529409999997" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                        <color key="textColor" red="0.2199999988079071" green="0.2199999988079071" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Y1v-Ex-D0u">
                                                 <rect key="frame" x="20" y="200" width="251" height="20.5"/>
                                                 <subviews>
@@ -243,25 +248,23 @@
                                         <constraints>
                                             <constraint firstItem="2Y9-Iy-Odl" firstAttribute="leading" secondItem="3eM-SJ-893" secondAttribute="leadingMargin" id="3Nb-Wi-x2i"/>
                                             <constraint firstItem="2Y9-Iy-Odl" firstAttribute="top" secondItem="3eM-SJ-893" secondAttribute="topMargin" id="4nR-2M-DKx"/>
-                                            <constraint firstItem="rai-yh-ty5" firstAttribute="leading" secondItem="3eM-SJ-893" secondAttribute="leadingMargin" id="B4B-Jb-Vyn"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="2Y9-Iy-Odl" secondAttribute="trailing" id="BCL-RQ-6cS"/>
                                             <constraint firstItem="1IH-zh-kjd" firstAttribute="top" secondItem="Y1v-Ex-D0u" secondAttribute="bottom" constant="20" id="CQS-Ui-XIz"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="Y1v-Ex-D0u" secondAttribute="trailing" id="K1g-MS-b5Q"/>
-                                            <constraint firstItem="yK3-Tf-1ae" firstAttribute="leading" secondItem="3eM-SJ-893" secondAttribute="leadingMargin" id="Y1U-qR-6ED"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="Bbb-Qf-RG5" secondAttribute="trailing" id="Q72-l1-iWF"/>
+                                            <constraint firstItem="Bbb-Qf-RG5" firstAttribute="top" secondItem="h9g-1Y-kSS" secondAttribute="bottom" constant="20" id="WeI-ui-YPO"/>
                                             <constraint firstItem="JGt-cb-Lyg" firstAttribute="top" secondItem="2Y9-Iy-Odl" secondAttribute="bottom" constant="20" id="Ywx-1n-05d"/>
                                             <constraint firstItem="h9g-1Y-kSS" firstAttribute="trailing" secondItem="3eM-SJ-893" secondAttribute="trailingMargin" id="aCJ-Nb-ikH"/>
+                                            <constraint firstItem="Y1v-Ex-D0u" firstAttribute="top" secondItem="Bbb-Qf-RG5" secondAttribute="bottom" constant="20" id="dGJ-qe-Jzr"/>
                                             <constraint firstItem="Y1v-Ex-D0u" firstAttribute="leading" secondItem="3eM-SJ-893" secondAttribute="leadingMargin" id="e1r-XT-mFp"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="1IH-zh-kjd" secondAttribute="trailing" id="epf-nX-5z4"/>
-                                            <constraint firstItem="yK3-Tf-1ae" firstAttribute="top" secondItem="h9g-1Y-kSS" secondAttribute="bottom" constant="20" id="kbL-i7-Kie"/>
                                             <constraint firstItem="Ktb-bF-Vf4" firstAttribute="baseline" secondItem="JGt-cb-Lyg" secondAttribute="baseline" id="lf5-Vf-waJ"/>
-                                            <constraint firstItem="rai-yh-ty5" firstAttribute="trailing" secondItem="3eM-SJ-893" secondAttribute="trailingMargin" id="phi-hL-7nR"/>
-                                            <constraint firstItem="rai-yh-ty5" firstAttribute="top" secondItem="yK3-Tf-1ae" secondAttribute="bottom" id="rDC-tO-Cb1"/>
                                             <constraint firstItem="Ktb-bF-Vf4" firstAttribute="leading" secondItem="JGt-cb-Lyg" secondAttribute="trailing" constant="8" id="rYc-lx-bU0"/>
-                                            <constraint firstItem="Y1v-Ex-D0u" firstAttribute="top" secondItem="rai-yh-ty5" secondAttribute="bottom" constant="20" id="rly-Qx-A0s"/>
                                             <constraint firstItem="h9g-1Y-kSS" firstAttribute="leading" secondItem="3eM-SJ-893" secondAttribute="leadingMargin" id="vuk-ae-7it"/>
                                             <constraint firstItem="h9g-1Y-kSS" firstAttribute="top" secondItem="JGt-cb-Lyg" secondAttribute="bottom" id="whV-fK-0xd"/>
                                             <constraint firstItem="1IH-zh-kjd" firstAttribute="leading" secondItem="3eM-SJ-893" secondAttribute="leadingMargin" id="woS-1Z-sCg"/>
                                             <constraint firstItem="JGt-cb-Lyg" firstAttribute="leading" secondItem="3eM-SJ-893" secondAttribute="leadingMargin" id="xcv-Xk-05U"/>
+                                            <constraint firstItem="Bbb-Qf-RG5" firstAttribute="leading" secondItem="3eM-SJ-893" secondAttribute="leadingMargin" id="xkC-Kf-uWb"/>
                                             <constraint firstItem="1IH-zh-kjd" firstAttribute="bottom" secondItem="3eM-SJ-893" secondAttribute="bottomMargin" id="zT4-ZU-OgM"/>
                                         </constraints>
                                         <edgeInsets key="layoutMargins" top="20" left="20" bottom="20" right="20"/>
@@ -292,12 +295,9 @@
                         <outlet property="whatToSeeLabel" destination="rai-yh-ty5" id="d1l-I7-evK"/>
                         <outlet property="whyVisitLabel" destination="7I7-MX-xvN" id="iou-lW-QOV"/>
                         <outletCollection property="backgroundColoredViews" destination="Ktb-bF-Vf4" collectionClass="NSMutableArray" id="Myf-ft-dh5"/>
-                        <outletCollection property="backgroundColoredViews" destination="yK3-Tf-1ae" collectionClass="NSMutableArray" id="zun-a6-EPP"/>
                         <outletCollection property="backgroundColoredViews" destination="JGt-cb-Lyg" collectionClass="NSMutableArray" id="ODB-Zm-F42"/>
                         <outletCollection property="backgroundColoredViews" destination="h9g-1Y-kSS" collectionClass="NSMutableArray" id="UEm-HF-9YW"/>
-                        <outletCollection property="backgroundColoredViews" destination="rai-yh-ty5" collectionClass="NSMutableArray" id="iuZ-J8-iw1"/>
                         <outletCollection property="headingLabels" destination="JGt-cb-Lyg" collectionClass="NSMutableArray" id="qSs-f9-qyA"/>
-                        <outletCollection property="headingLabels" destination="yK3-Tf-1ae" collectionClass="NSMutableArray" id="StY-8R-cx1"/>
                         <outletCollection property="backgroundColoredViews" destination="vi1-Tq-gH0" collectionClass="NSMutableArray" id="dJY-4L-AQm"/>
                         <outletCollection property="backgroundColoredViews" destination="GPk-7c-5ID" collectionClass="NSMutableArray" id="FiJ-V6-vWs"/>
                         <outletCollection property="backgroundColoredViews" destination="k0z-xq-log" collectionClass="NSMutableArray" id="hIZ-a4-YDg"/>
@@ -307,6 +307,9 @@
                         <outletCollection property="backgroundColoredViews" destination="ORI-tY-KjD" collectionClass="NSMutableArray" id="KED-Zr-uL7"/>
                         <outletCollection property="headingLabels" destination="ORI-tY-KjD" collectionClass="NSMutableArray" id="oTB-Qc-s1y"/>
                         <outletCollection property="backgroundColoredViews" destination="7I7-MX-xvN" collectionClass="NSMutableArray" id="CKu-14-oWM"/>
+                        <outletCollection property="headingLabels" destination="yK3-Tf-1ae" collectionClass="NSMutableArray" id="StY-8R-cx1"/>
+                        <outletCollection property="backgroundColoredViews" destination="yK3-Tf-1ae" collectionClass="NSMutableArray" id="zun-a6-EPP"/>
+                        <outletCollection property="backgroundColoredViews" destination="rai-yh-ty5" collectionClass="NSMutableArray" id="iuZ-J8-iw1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e2p-XL-PCg" userLabel="First Responder" sceneMemberID="firstResponder"/>
