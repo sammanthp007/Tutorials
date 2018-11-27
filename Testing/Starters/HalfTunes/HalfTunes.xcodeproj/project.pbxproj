@@ -10,6 +10,8 @@
 		408976CF1DEBF79E00AAB652 /* DHURLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408976CE1DEBF79E00AAB652 /* DHURLSessionMock.swift */; };
 		4708D0071DD0E0E100B57EFC /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4708D0061DD0E0E100B57EFC /* Download.swift */; };
 		9C18F80721A605D200CB82D0 /* HalfTunesSlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C18F80621A605D200CB82D0 /* HalfTunesSlowTests.swift */; };
+		9CA07A5921ADB77F003570EA /* HalfTunesFakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA07A5821ADB77F003570EA /* HalfTunesFakeTests.swift */; };
+		9CA07A6121ADB87A003570EA /* aabaData.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CA07A6021ADB87A003570EA /* aabaData.json */; };
 		D9EF8FC71B53FD2100EFC4B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EF8FC61B53FD2100EFC4B6 /* AppDelegate.swift */; };
 		D9EF8FCE1B53FD2100EFC4B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9EF8FCC1B53FD2100EFC4B6 /* Main.storyboard */; };
 		D9EF8FD01B53FD2100EFC4B6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9EF8FCF1B53FD2100EFC4B6 /* Images.xcassets */; };
@@ -27,6 +29,13 @@
 			remoteGlobalIDString = D9EF8FC01B53FD2100EFC4B6;
 			remoteInfo = HalfTunes;
 		};
+		9CA07A5B21ADB77F003570EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9EF8FB91B53FD2100EFC4B6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D9EF8FC01B53FD2100EFC4B6;
+			remoteInfo = HalfTunes;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +44,10 @@
 		9C18F80421A605D200CB82D0 /* HalfTunesSlowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HalfTunesSlowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C18F80621A605D200CB82D0 /* HalfTunesSlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfTunesSlowTests.swift; sourceTree = "<group>"; };
 		9C18F80821A605D200CB82D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CA07A5621ADB77F003570EA /* HalfTunesFakeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HalfTunesFakeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CA07A5821ADB77F003570EA /* HalfTunesFakeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfTunesFakeTests.swift; sourceTree = "<group>"; };
+		9CA07A5A21ADB77F003570EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CA07A6021ADB87A003570EA /* aabaData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = aabaData.json; path = ../../../../../../Downloads/aabaData.json; sourceTree = "<group>"; };
 		D9EF8FC11B53FD2100EFC4B6 /* HalfTunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HalfTunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9EF8FC51B53FD2100EFC4B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9EF8FC61B53FD2100EFC4B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +61,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		9C18F80121A605D200CB82D0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9CA07A5321ADB77F003570EA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -73,6 +93,16 @@
 			path = HalfTunesSlowTests;
 			sourceTree = "<group>";
 		};
+		9CA07A5721ADB77F003570EA /* HalfTunesFakeTests */ = {
+			isa = PBXGroup;
+			children = (
+				9CA07A6021ADB87A003570EA /* aabaData.json */,
+				9CA07A5821ADB77F003570EA /* HalfTunesFakeTests.swift */,
+				9CA07A5A21ADB77F003570EA /* Info.plist */,
+			);
+			path = HalfTunesFakeTests;
+			sourceTree = "<group>";
+		};
 		D92117481B596DFE008DAD44 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +125,7 @@
 			children = (
 				D9EF8FC31B53FD2100EFC4B6 /* HalfTunes */,
 				9C18F80521A605D200CB82D0 /* HalfTunesSlowTests */,
+				9CA07A5721ADB77F003570EA /* HalfTunesFakeTests */,
 				D9EF8FC21B53FD2100EFC4B6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -104,6 +135,7 @@
 			children = (
 				D9EF8FC11B53FD2100EFC4B6 /* HalfTunes.app */,
 				9C18F80421A605D200CB82D0 /* HalfTunesSlowTests.xctest */,
+				9CA07A5621ADB77F003570EA /* HalfTunesFakeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -153,6 +185,24 @@
 			productReference = 9C18F80421A605D200CB82D0 /* HalfTunesSlowTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		9CA07A5521ADB77F003570EA /* HalfTunesFakeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9CA07A5F21ADB77F003570EA /* Build configuration list for PBXNativeTarget "HalfTunesFakeTests" */;
+			buildPhases = (
+				9CA07A5221ADB77F003570EA /* Sources */,
+				9CA07A5321ADB77F003570EA /* Frameworks */,
+				9CA07A5421ADB77F003570EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9CA07A5C21ADB77F003570EA /* PBXTargetDependency */,
+			);
+			name = HalfTunesFakeTests;
+			productName = HalfTunesFakeTests;
+			productReference = 9CA07A5621ADB77F003570EA /* HalfTunesFakeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D9EF8FC01B53FD2100EFC4B6 /* HalfTunes */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9EF8FE21B53FD2100EFC4B6 /* Build configuration list for PBXNativeTarget "HalfTunes" */;
@@ -186,6 +236,12 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = D9EF8FC01B53FD2100EFC4B6;
 					};
+					9CA07A5521ADB77F003570EA = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = K86KHC28SR;
+						ProvisioningStyle = Automatic;
+						TestTargetID = D9EF8FC01B53FD2100EFC4B6;
+					};
 					D9EF8FC01B53FD2100EFC4B6 = {
 						CreatedOnToolsVersion = 6.4;
 						LastSwiftMigration = 0810;
@@ -207,6 +263,7 @@
 			targets = (
 				D9EF8FC01B53FD2100EFC4B6 /* HalfTunes */,
 				9C18F80321A605D200CB82D0 /* HalfTunesSlowTests */,
+				9CA07A5521ADB77F003570EA /* HalfTunesFakeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -216,6 +273,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9CA07A5421ADB77F003570EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CA07A6121ADB87A003570EA /* aabaData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +305,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9CA07A5221ADB77F003570EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CA07A5921ADB77F003570EA /* HalfTunesFakeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9EF8FBD1B53FD2100EFC4B6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -260,6 +333,11 @@
 			isa = PBXTargetDependency;
 			target = D9EF8FC01B53FD2100EFC4B6 /* HalfTunes */;
 			targetProxy = 9C18F80921A605D200CB82D0 /* PBXContainerItemProxy */;
+		};
+		9CA07A5C21ADB77F003570EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D9EF8FC01B53FD2100EFC4B6 /* HalfTunes */;
+			targetProxy = 9CA07A5B21ADB77F003570EA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -347,6 +425,77 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = sammanwork.HalfTunesSlowTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HalfTunes.app/HalfTunes";
+			};
+			name = Release;
+		};
+		9CA07A5D21ADB77F003570EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = K86KHC28SR;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = HalfTunesFakeTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = sammanwork.HalfTunesFakeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HalfTunes.app/HalfTunes";
+			};
+			name = Debug;
+		};
+		9CA07A5E21ADB77F003570EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K86KHC28SR;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = HalfTunesFakeTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = sammanwork.HalfTunesFakeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -475,6 +624,15 @@
 			buildConfigurations = (
 				9C18F80B21A605D200CB82D0 /* Debug */,
 				9C18F80C21A605D200CB82D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9CA07A5F21ADB77F003570EA /* Build configuration list for PBXNativeTarget "HalfTunesFakeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9CA07A5D21ADB77F003570EA /* Debug */,
+				9CA07A5E21ADB77F003570EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
