@@ -68,5 +68,13 @@ class HalfTunesFakeTests: XCTestCase
         // then
         XCTAssertEqual(controllerUnderTest.searchResults.count, 3, "Didn't parse 3 items from fake response")
     }
+    
+    func test_StartDownload_Performance()
+    {
+        let track = Track(name: "Waterloo", artist: "ABBA", previewUrl: "http://a821.phobos.apple.com/us/r30/Music/d7/ba/ce/mzm.vsyjlsff.aac.p.m4a")
+        self.measure {
+            self.controllerUnderTest?.startDownload(track)
+        }
+    }
 
 }
