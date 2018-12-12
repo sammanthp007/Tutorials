@@ -47,7 +47,7 @@ class ViewController: UIViewController
         let deviceInput = try! AVCaptureDeviceInput(device: captureDevice!) // The default camera
         let deviceOutput = AVCaptureVideoDataOutput() // what the video should appear as
         deviceOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)] // video format
-        deviceOutput.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.default))
+        deviceOutput.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.default)) // delegate handling of the output in sampleBuffer
         
         session.addInput(deviceInput)
         session.addOutput(deviceOutput)
