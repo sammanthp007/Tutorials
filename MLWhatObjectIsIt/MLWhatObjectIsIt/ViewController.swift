@@ -9,13 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var classifier: UILabel!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
-
 }
 
+extension ViewController: UINavigationControllerDelegate
+{
+    // using https://www.appcoda.com/coreml-introduction/
+}

@@ -48,6 +48,10 @@
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="camera" id="8hG-mp-xQ6"/>
                         <barButtonItem key="rightBarButtonItem" title="Library" id="80T-ph-lMM"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="classifier" destination="dgd-is-JKO" id="a1B-K2-5wM"/>
+                        <outlet property="imageView" destination="FPa-rL-hus" id="msI-Dq-PFY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
