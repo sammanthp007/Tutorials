@@ -17,9 +17,41 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    // MARK: - IBActions
+    @IBAction func onTapCamera(_ sender: Any)
+    {
+        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+            return
+        }
+        
+        let cameraPicker = UIImagePickerController()
+        cameraPicker.delegate = self
+        cameraPicker.sourceType = .camera
+        cameraPicker.allowsEditing = false
+        
+        present(cameraPicker, animated: true)
+    }
+    
+    
+    @IBAction func onTapLibrary(_ sender: Any)
+    {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = false
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        present(picker, animated: true)
+    }
 }
 
 extension ViewController: UINavigationControllerDelegate
 {
     // using https://www.appcoda.com/coreml-introduction/
+}
+
+
+extension ViewController: UIImagePickerControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
 }

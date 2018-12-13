@@ -19,13 +19,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgd-is-JKO">
-                                <rect key="frame" x="4" y="638" width="323" height="21"/>
+                                <rect key="frame" x="4" y="638" width="367" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FPa-rL-hus">
-                                <rect key="frame" x="16" y="184" width="299" height="299"/>
+                                <rect key="frame" x="16" y="184" width="343" height="299"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="299" id="FBu-zj-BzG"/>
                                     <constraint firstAttribute="width" constant="299" id="ZTK-6H-OFd"/>
@@ -45,8 +45,16 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="9ct-3t-6Sq">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="camera" id="8hG-mp-xQ6"/>
-                        <barButtonItem key="rightBarButtonItem" title="Library" id="80T-ph-lMM"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="camera" id="8hG-mp-xQ6">
+                            <connections>
+                                <action selector="onTapCamera:" destination="BYZ-38-t0r" id="132-2E-ecF"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Library" id="80T-ph-lMM">
+                            <connections>
+                                <action selector="onTapLibrary:" destination="BYZ-38-t0r" id="22Y-XV-7RG"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="classifier" destination="dgd-is-JKO" id="a1B-K2-5wM"/>
