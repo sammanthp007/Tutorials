@@ -25,7 +25,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FPa-rL-hus">
-                                <rect key="frame" x="16" y="184" width="343" height="299"/>
+                                <rect key="frame" x="38" y="184" width="299" height="299"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="299" id="FBu-zj-BzG"/>
                                     <constraint firstAttribute="width" constant="299" id="ZTK-6H-OFd"/>
@@ -34,12 +34,10 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FPa-rL-hus" secondAttribute="trailing" constant="16" id="QYf-fW-MXZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dgd-is-JKO" secondAttribute="bottom" constant="8" id="TNB-dw-nlO"/>
                             <constraint firstItem="dgd-is-JKO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="4" id="VkY-sl-XGR"/>
                             <constraint firstItem="FPa-rL-hus" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fao-12-wcq"/>
                             <constraint firstItem="FPa-rL-hus" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nKg-Zn-aCd"/>
-                            <constraint firstItem="FPa-rL-hus" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="xSd-Gs-HJj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dgd-is-JKO" secondAttribute="trailing" constant="4" id="zKC-27-Wm1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
