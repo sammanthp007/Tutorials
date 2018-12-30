@@ -40,10 +40,13 @@ class ViewController: UIViewController {
   @IBOutlet weak var basketBottomConstraint : NSLayoutConstraint!
   
   @IBOutlet weak var bug: UIImageView!
+  var isBugDead = false
+  var tap: UITapGestureRecognizer!
   
   required init?(coder aDecoder: NSCoder)
   {
     super.init(coder: aDecoder)
+    tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.handleTap(_:)))
   }
   
   override func viewDidAppear(_ animated: Bool)
@@ -51,6 +54,8 @@ class ViewController: UIViewController {
     openBasket()
     openNapkins()
     moveBugLeft()
+    
+    view.addGestureRecognizer(tap)
   }
   
   func openBasket()
@@ -82,12 +87,46 @@ class ViewController: UIViewController {
       print("Napkins opened!")
     })
   }
+  
+  @objc func handleTap(_ gesture: UITapGestureRecognizer)
+  {
+    let tapLocation = gesture.location(in: bug.superview)
+    // As your bug scoots back and forth, its underlying frame has already moved to its final position for that animation.
+    // All the in-between animation orientation and positioning details are handled in the presentation layer.
+    if (bug.layer.presentation()?.frame.contains(tapLocation))!
+    {
+      print("Bug tapped!")
+      if isBugDead { return }
+      
+      view.removeGestureRecognizer(tap)
+      isBugDead = true
+      
+      UIView.animate(withDuration: 0.7, delay: 0.0,
+                     options: [.curveEaseOut , .beginFromCurrentState], animations: {
+                      // flattened by applying a scale transform
+                      self.bug.transform = CGAffineTransform(scaleX: 1.25, y: 0.75)
+      }, completion: { finished in
+        UIView.animate(withDuration: 2.0, delay: 2.0, options: [], animations: {
+          // fades to nothingness by setting its alpha to 0 after a delay
+          self.bug.alpha = 0.0
+        }, completion: { finished in
+          // remove the bug from the superview
+          self.bug.removeFromSuperview()
+        })
+      })
+    }
+    else
+    {
+      print("Bug not tapped!")
+    }
+  }
 }
 
 extension ViewController
 {
   func moveBugLeft()
   {
+    if isBugDead { return }
     UIView.animate(withDuration: 1.0,
                    delay: 2.0,
                    options: [.curveEaseInOut , .allowUserInteraction],
@@ -102,6 +141,7 @@ extension ViewController
   
   func faceBugRight()
   {
+    if isBugDead { return }
     UIView.animate(withDuration: 1.0,
                    delay: 0.0,
                    options: [.curveEaseInOut , .allowUserInteraction],
@@ -116,6 +156,7 @@ extension ViewController
   
   func moveBugRight()
   {
+    if isBugDead { return }
     UIView.animate(withDuration: 1.0,
                    delay: 2.0,
                    options: [.curveEaseInOut , .allowUserInteraction],
@@ -130,6 +171,7 @@ extension ViewController
   
   func faceBugLeft()
   {
+    if isBugDead { return }
     UIView.animate(withDuration: 1.0,
                    delay: 0.0,
                    options: [.curveEaseInOut , .allowUserInteraction],
