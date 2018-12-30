@@ -50,6 +50,7 @@ class ViewController: UIViewController {
   {
     openBasket()
     openNapkins()
+    moveBugLeft()
   }
   
   func openBasket()
@@ -79,6 +80,66 @@ class ViewController: UIViewController {
         self.fabricBottom.frame = fabricBottomFrame
     }, completion: { finished in
       print("Napkins opened!")
+    })
+  }
+}
+
+extension ViewController
+{
+  func moveBugLeft()
+  {
+    UIView.animate(withDuration: 1.0,
+                   delay: 2.0,
+                   options: [.curveEaseInOut , .allowUserInteraction],
+                   animations: {
+                    self.bug.center = CGPoint(x: 75, y: 200)
+    },
+                   completion: { finished in
+                    print("Bug moved left!")
+                    self.faceBugRight()
+    })
+  }
+  
+  func faceBugRight()
+  {
+    UIView.animate(withDuration: 1.0,
+                   delay: 0.0,
+                   options: [.curveEaseInOut , .allowUserInteraction],
+                   animations: {
+                    self.bug.transform = CGAffineTransform(rotationAngle: .pi)
+    },
+                   completion: { finished in
+                    print("Bug faced right!")
+                    self.moveBugRight()
+    })
+  }
+  
+  func moveBugRight()
+  {
+    UIView.animate(withDuration: 1.0,
+                   delay: 2.0,
+                   options: [.curveEaseInOut , .allowUserInteraction],
+                   animations: {
+                    self.bug.center = CGPoint(x: self.view.frame.width - 75, y: 250)
+    },
+                   completion: { finished in
+                    print("Bug moved right!")
+                    self.faceBugLeft()
+    })
+  }
+  
+  func faceBugLeft()
+  {
+    UIView.animate(withDuration: 1.0,
+                   delay: 0.0,
+                   options: [.curveEaseInOut , .allowUserInteraction],
+                   animations:
+      {
+                    self.bug.transform = CGAffineTransform(rotationAngle: 0.0)
+    },
+                   completion: { finished in
+                    print("Bug faced left!")
+                    self.moveBugLeft()
     })
   }
 }
