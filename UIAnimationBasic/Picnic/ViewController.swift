@@ -41,29 +41,42 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var bug: UIImageView!
   
-  required init?(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder)
+  {
     super.init(coder: aDecoder)
   }
   
-  override func viewDidAppear(_ animated: Bool) {
+  override func viewDidAppear(_ animated: Bool)
+  {
     openBasket()
     openNapkins()
   }
   
-  func openBasket() {
+  func openBasket()
+  {
+    basketTopConstraint.constant -= basketTop.frame.size.height
+    basketBottomConstraint.constant -= basketBottom.frame.size.height
     
+    UIView.animate(withDuration: 0.7, delay: 1.0, options: .curveEaseOut, animations:
+      {
+        self.view.layoutIfNeeded()
+    }, completion: { finished in
+      print("Basket doors opened!")
+    })
   }
   
-  func openNapkins() {
-    UIView.animate(withDuration: 1.0, delay: 1.2, options: .curveEaseOut, animations: {
-      var fabricTopFrame = self.fabricTop.frame
-      fabricTopFrame.origin.y -= fabricTopFrame.size.height
-      
-      var fabricBottomFrame = self.fabricBottom.frame
-      fabricBottomFrame.origin.y += fabricBottomFrame.size.height
-      
-      self.fabricTop.frame = fabricTopFrame
-      self.fabricBottom.frame = fabricBottomFrame
+  func openNapkins()
+  {
+    UIView.animate(withDuration: 1.0, delay: 1.2, options: .curveEaseOut, animations:
+      {
+        var fabricTopFrame = self.fabricTop.frame
+        fabricTopFrame.origin.y -= fabricTopFrame.size.height
+        
+        var fabricBottomFrame = self.fabricBottom.frame
+        fabricBottomFrame.origin.y += fabricBottomFrame.size.height
+        
+        self.fabricTop.frame = fabricTopFrame
+        self.fabricBottom.frame = fabricBottomFrame
     }, completion: { finished in
       print("Napkins opened!")
     })
