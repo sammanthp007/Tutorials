@@ -27,8 +27,10 @@
 /// THE SOFTWARE.
 
 import UIKit
+import AVFoundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController
+{
   
   @IBOutlet weak var basketTop: UIImageView!
   @IBOutlet weak var basketBottom: UIImageView!
@@ -43,8 +45,15 @@ class ViewController: UIViewController {
   var isBugDead = false
   var tap: UITapGestureRecognizer!
   
+  // Sound Player
+  let squishPlayer: AVAudioPlayer
+  
   required init?(coder aDecoder: NSCoder)
   {
+    let squishURL = Bundle.main.url(forResource: "squish", withExtension: "caf")!
+    squishPlayer = try! AVAudioPlayer(contentsOf: squishURL)
+    squishPlayer.prepareToPlay()
+    
     super.init(coder: aDecoder)
     tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.handleTap(_:)))
   }
@@ -100,13 +109,14 @@ class ViewController: UIViewController {
       
       view.removeGestureRecognizer(tap)
       isBugDead = true
+      squishPlayer.play()
       
       UIView.animate(withDuration: 0.7, delay: 0.0,
                      options: [.curveEaseOut , .beginFromCurrentState], animations: {
                       // flattened by applying a scale transform
                       self.bug.transform = CGAffineTransform(scaleX: 1.25, y: 0.75)
       }, completion: { finished in
-        UIView.animate(withDuration: 2.0, delay: 2.0, options: [], animations: {
+        UIView.animate(withDuration: 1.0, delay: 1.0, options: [], animations: {
           // fades to nothingness by setting its alpha to 0 after a delay
           self.bug.alpha = 0.0
         }, completion: { finished in
@@ -177,7 +187,7 @@ extension ViewController
                    options: [.curveEaseInOut , .allowUserInteraction],
                    animations:
       {
-                    self.bug.transform = CGAffineTransform(rotationAngle: 0.0)
+        self.bug.transform = CGAffineTransform(rotationAngle: 0.0)
     },
                    completion: { finished in
                     print("Bug faced left!")
