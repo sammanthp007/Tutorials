@@ -32,9 +32,6 @@ import FirebaseFirestore
 
 class ChannelsViewController: UITableViewController {
   
-  private var messages: [Message] = []
-  private var messageListener: ListenerRegistration?
-  
   private let toolbarLabel: UILabel = {
     let label = UILabel()
     label.textAlignment = .center

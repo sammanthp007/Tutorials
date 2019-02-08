@@ -31,7 +31,10 @@ import Firebase
 import MessageKit
 import FirebaseFirestore
 
-final class ChatViewController: MessagesViewController {
+final class ChatViewController: MessagesViewController
+{
+  private var messages: [Message] = []
+  private var messageListener: ListenerRegistration?
   
   private let user: User
   private let channel: Channel
@@ -56,6 +59,11 @@ final class ChatViewController: MessagesViewController {
     maintainPositionOnKeyboardFrameChanged = true
     messageInputBar.inputTextView.tintColor = .primary
     messageInputBar.sendButton.setTitleColor(.primary, for: .normal)
+    
+    messageInputBar.delegate = self
+    messagesCollectionView.messagesDataSource = self
+    messagesCollectionView.messagesLayoutDelegate = self
+    messagesCollectionView.messagesDisplayDelegate = self
   }
   
 }
@@ -64,13 +72,74 @@ final class ChatViewController: MessagesViewController {
 
 extension ChatViewController: MessagesDisplayDelegate
 {
+  func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor
+  {
+    return isFromCurrentSender(message: message) ? .primary: .incomingMessage
+  }
   
+  func shouldDisplayHeader(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Bool
+  {
+    return false
+  }
+  
+  func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle
+  {
+    let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
+    
+    return .bubbleTail(corner, .curved)
+  }
+}
+
+extension ChatViewController: MessagesLayoutDelegate
+{
+  func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize
+  {
+    return .zero
+  }
+  
+  func footerViewSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize
+  {
+    return CGSize(width: 0, height: 8)
+  }
+  
+  func heightForLocation(message: MessageType, at indexPath: IndexPath, with maxWidth: CGFloat, in messagesCollectionView: MessagesCollectionView) -> CGFloat
+  {
+    return 0
+  }
+}
+
+extension ChatViewController: MessagesDataSource
+{
+  func currentSender() -> Sender {
+    return Sender(id: user.uid, displayName: AppSettings.displayName)
+  }
+  
+  func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int
+  {
+    return messages.count
+  }
+  
+  func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType
+  {
+    return messages[indexPath.section]
+  }
+  
+  func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString?
+  {
+    let name = message.sender.displayName
+    return NSAttributedString(
+      string: name,
+      attributes: [
+        .font: UIFont.preferredFont(forTextStyle: .caption1),
+        .foregroundColor: UIColor(white: 0.3, alpha: 1)
+      ]
+    )
+  }
 }
 
 // MARK: - MessageInputBarDelegate
 
 extension ChatViewController: MessageInputBarDelegate {
-  
 }
 
 // MARK: - UIImagePickerControllerDelegate
