@@ -36,6 +36,9 @@ final class ChatViewController: MessagesViewController
   private var messages: [Message] = []
   private var messageListener: ListenerRegistration?
   
+  private let db = Firestore.firestore()
+  private var reference: CollectionReference?
+  
   private let user: User
   private let channel: Channel
   
@@ -51,7 +54,16 @@ final class ChatViewController: MessagesViewController
     fatalError("init(coder:) has not been implemented")
   }
   
-  override func viewDidLoad() {
+  override func viewDidLoad()
+  {
+    guard let id = channel.id else
+    {
+      navigationController?.popViewController(animated: true)
+      return
+    }
+    
+    reference = db.collection(["channels", id, "thread"].joined(separator: "/"))
+    
     super.viewDidLoad()
     
     navigationItem.largeTitleDisplayMode = .never
@@ -93,6 +105,21 @@ final class ChatViewController: MessagesViewController
     
     let testMessage = Message(user: user, content: "I love momo, what is your favorite?")
     insertNewMessage(testMessage)
+  }
+}
+
+// MARK: - Helpers
+extension ChatViewController
+{
+  private func save(_ message: Message) {
+    reference?.addDocument(data: message.representation) { error in
+      if let e = error {
+        print("Error sending message: \(e.localizedDescription)")
+        return
+      }
+      
+      self.messagesCollectionView.scrollToBottom()
+    }
   }
 }
 
@@ -168,7 +195,16 @@ extension ChatViewController: MessagesDataSource
 
 // MARK: - MessageInputBarDelegate
 
-extension ChatViewController: MessageInputBarDelegate {
+extension ChatViewController: MessageInputBarDelegate
+{
+  func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String)
+  {
+    let message = Message(user: user, content: text)
+    
+    save(message)
+    
+    inputBar.inputTextView.text = ""
+  }
 }
 
 // MARK: - UIImagePickerControllerDelegate
