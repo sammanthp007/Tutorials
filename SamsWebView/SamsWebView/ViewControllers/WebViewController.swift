@@ -9,39 +9,31 @@
 import UIKit
 import WebKit
 
-class WebViewController: UIViewController {
+class WebViewController: UIViewController
+{
     
     var link: URL?
     
-    var webView: WKWebView!
+    var progressView: UIProgressView?
+    var backForwardButtonHolderView: UIView?
+    var backButton: UIButton?
+    var forwardButton: UIButton?
     
-    override func loadView() {
-        // TODO: learn what this line is doing
-        /*
-            A collection of properties used to initialize a web view.
-         
-         Using the WKWebViewConfiguration class, you can determine how soon a webpage is rendered, how media playback is handled, the granularity of items that the user can select, and many other options.
-         
-         WKWebViewConfiguration is only used when a web view is first initialized. You cannot use this class to change the web view's configuration after it has been created.
-        */
-//        let webConfiguration = WKWebViewConfiguration()
-        // TODO: learn what options we have for frame
-        // this does not even work, probably because we are assigning to controllers view
-//        let frameOfWebView = CGRect(x: 90.0, y: 90.0, width: 300, height: 300)
-//        webView = WKWebView(frame: .zero, configuration: webConfiguration)
-//        webView = WKWebView(frame: frameOfWebView, configuration: webConfiguration)
+    let stackView = UIStackView()
+    
+    var webView: WKWebView!
+
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        
         self.webView = WKWebView()
         self.webView.navigationDelegate = self
-        // TODO: learn about uiDelegate - the WebViews user interface delegate
-//        webView.uiDelegate = self
-        self.view = webView
-    }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        print ("loaded with link: \(link?.absoluteString ?? "Oops, did not find the link")")
+        self.view.backgroundColor = UIColor.white
+        view.addSubview(stackView)
+        setupMainStackViewAndAddConstraints(stackView: stackView)
+        stackView.addArrangedSubview(webView)
         
         if let link = link
         {
@@ -59,33 +51,27 @@ class WebViewController: UIViewController {
         let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
         
         toolbarItems = [spacer, refresh]
-        navigationController?.isToolbarHidden = false
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        // Set to false to show tool bar too
+        navigationController?.isToolbarHidden = true
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func setupMainStackViewAndAddConstraints(stackView: UIStackView)
+    {
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.spacing = 0
+        stackView.alignment = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
-    */
-
-}
-
-// TODO: learn about WKUIDelegate
-extension WebViewController: WKUIDelegate {
-    
 }
 
 // TODO: learn about WKNavigationDelegate
-extension WebViewController: WKNavigationDelegate {
+extension WebViewController: WKNavigationDelegate
+{
     
 }
