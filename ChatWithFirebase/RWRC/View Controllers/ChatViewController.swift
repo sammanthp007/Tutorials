@@ -42,7 +42,8 @@ final class ChatViewController: MessagesViewController
   private let user: User
   private let channel: Channel
   
-  init(user: User, channel: Channel) {
+  init(user: User, channel: Channel)
+  {
     self.user = user
     self.channel = channel
     super.init(nibName: nil, bundle: nil)
@@ -50,7 +51,8 @@ final class ChatViewController: MessagesViewController
     title = channel.name
   }
   
-  required init?(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder)
+  {
     fatalError("init(coder:) has not been implemented")
   }
   
@@ -62,7 +64,18 @@ final class ChatViewController: MessagesViewController
       return
     }
     
+    // Listen and handle new messages
     reference = db.collection(["channels", id, "thread"].joined(separator: "/"))
+    messageListener = reference?.addSnapshotListener { querySnapshot, error in
+      guard let snapshot = querySnapshot else {
+        print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
+        return
+      }
+      
+      snapshot.documentChanges.forEach { change in
+        self.handleDocumentChange(change)
+      }
+    }
     
     super.viewDidLoad()
     
@@ -99,12 +112,23 @@ final class ChatViewController: MessagesViewController
     }
   }
   
-  override func viewDidAppear(_ animated: Bool)
+  private func handleDocumentChange(_ change: DocumentChange)
   {
-    super.viewDidAppear(animated)
+    guard let message = Message(document: change.document) else
+    { return }
     
-    let testMessage = Message(user: user, content: "I love momo, what is your favorite?")
-    insertNewMessage(testMessage)
+    switch change.type
+    {
+    case .added:
+      insertNewMessage(message)
+      
+    default:
+      break
+    }
+  }
+  
+  deinit {
+    messageListener?.remove()
   }
 }
 
@@ -141,16 +165,16 @@ extension ChatViewController: MessagesDisplayDelegate
   {
     let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
     
-    return .bubbleTail(corner, .curved)
+    return .bubbleTail(corner, MessageStyle.TailStyle.pointedEdge)
   }
 }
 
 extension ChatViewController: MessagesLayoutDelegate
 {
-  func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize
-  {
-    return .zero
-  }
+//  func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize
+//  {
+//    return .zero
+//  }
   
   func footerViewSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize
   {
