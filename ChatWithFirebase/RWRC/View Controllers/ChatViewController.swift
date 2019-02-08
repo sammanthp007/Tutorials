@@ -30,6 +30,7 @@ import UIKit
 import Firebase
 import MessageKit
 import FirebaseFirestore
+import Photos
 
 final class ChatViewController: MessagesViewController
 {
@@ -41,6 +42,18 @@ final class ChatViewController: MessagesViewController
   
   private let user: User
   private let channel: Channel
+  
+  private var isSendingPhoto = false {
+    didSet {
+      DispatchQueue.main.async {
+        self.messageInputBar.leftStackViewItems.forEach { item in
+          item.isEnabled = !self.isSendingPhoto
+        }
+      }
+    }
+  }
+  
+  private let storage = Storage.storage().reference()
   
   init(user: User, channel: Channel)
   {
@@ -89,6 +102,8 @@ final class ChatViewController: MessagesViewController
     messagesCollectionView.messagesDataSource = self
     messagesCollectionView.messagesLayoutDelegate = self
     messagesCollectionView.messagesDisplayDelegate = self
+    
+    addCameraButton()
   }
   
   private func insertNewMessage(_ message: Message)
@@ -114,13 +129,30 @@ final class ChatViewController: MessagesViewController
   
   private func handleDocumentChange(_ change: DocumentChange)
   {
-    guard let message = Message(document: change.document) else
+    guard var message = Message(document: change.document) else
     { return }
     
     switch change.type
     {
     case .added:
-      insertNewMessage(message)
+      if let url = message.downloadURL
+      {
+        downloadImage(at: url) { [weak self] image in
+          guard let self = self else {
+            return
+          }
+          guard let image = image else {
+            return
+          }
+          
+          message.image = image
+          self.insertNewMessage(message)
+        }
+      }
+      else
+      {
+        insertNewMessage(message)
+      }
       
     default:
       break
@@ -130,19 +162,124 @@ final class ChatViewController: MessagesViewController
   deinit {
     messageListener?.remove()
   }
+  
+  // MARK: Private View Constructors
+  private func addCameraButton()
+  {
+    // 1
+    let cameraItem = InputBarButtonItem(type: .system)
+    cameraItem.tintColor = .primary
+    cameraItem.image = UIImage(named: "camera")
+    
+    // 2
+    cameraItem.addTarget(
+      self,
+      action: #selector(cameraButtonPressed),
+      for: .primaryActionTriggered
+    )
+    cameraItem.setSize(CGSize(width: 60, height: 30), animated: false)
+    
+    messageInputBar.leftStackView.alignment = .center
+    messageInputBar.setLeftStackViewWidthConstant(to: 50, animated: false)
+    
+    // 3
+    messageInputBar.setStackViewItems([cameraItem], forStack: .left, animated: false)
+  }
+  
+  // MARK: - Actions
+  
+  @objc private func cameraButtonPressed()
+  {
+    let picker = UIImagePickerController()
+    picker.delegate = self
+    
+    if UIImagePickerController.isSourceTypeAvailable(.camera)
+    {
+      picker.sourceType = .camera
+    }
+    else
+    {
+      picker.sourceType = .photoLibrary
+    }
+    
+    present(picker, animated: true, completion: nil)
+  }
 }
 
 // MARK: - Helpers
 extension ChatViewController
 {
-  private func save(_ message: Message) {
+  private func save(_ message: Message)
+  {
     reference?.addDocument(data: message.representation) { error in
-      if let e = error {
+      if let e = error
+      {
         print("Error sending message: \(e.localizedDescription)")
         return
       }
       
       self.messagesCollectionView.scrollToBottom()
+    }
+  }
+  
+  private func uploadImage(_ image: UIImage, to channel: Channel, completion: @escaping (URL?) -> Void)
+  {
+    guard let channelID = channel.id else
+    {
+      completion(nil)
+      return
+    }
+    
+    guard let scaledImage = image.scaledToSafeUploadSize,
+      let data = scaledImage.jpegData(compressionQuality: 0.4) else
+    {
+        completion(nil)
+        return
+    }
+    
+    let metadata = StorageMetadata()
+    metadata.contentType = "image/jpeg"
+    
+    let imageName = [UUID().uuidString, String(Date().timeIntervalSince1970)].joined()
+    storage.child(channelID).child(imageName).putData(data, metadata: metadata) { meta, error in
+      completion(meta?.downloadURL())
+    }
+  }
+  
+  private func sendPhoto(_ image: UIImage)
+  {
+    isSendingPhoto = true
+    
+    uploadImage(image, to: channel) { [weak self] url in
+      guard let `self` = self else {
+        return
+      }
+      self.isSendingPhoto = false
+      
+      guard let url = url else
+      { return }
+      
+      var message = Message(user: self.user, image: image)
+      message.downloadURL = url
+      
+      self.save(message)
+      self.messagesCollectionView.scrollToBottom()
+    }
+  }
+  
+  private func downloadImage(at url: URL, completion: @escaping (UIImage?) -> Void)
+  {
+    let ref = Storage.storage().reference(forURL: url.absoluteString)
+    let megaByte = Int64(1 * 1024 * 1024)
+    
+    ref.getData(maxSize: megaByte) { data, error in
+      guard let imageData = data else
+      {
+        completion(nil)
+        return
+      }
+      
+      completion(UIImage(data: imageData))
     }
   }
 }
@@ -233,6 +370,40 @@ extension ChatViewController: MessageInputBarDelegate
 
 // MARK: - UIImagePickerControllerDelegate
 
-extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate
+{
+  func imagePickerController(_ picker: UIImagePickerController,
+                             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
+  {
+    picker.dismiss(animated: true, completion: nil)
+    
+    // 1
+    if let asset = info[.phAsset] as? PHAsset
+    {
+      let size = CGSize(width: 500, height: 500)
+      PHImageManager.default().requestImage(
+        for: asset,
+        targetSize: size,
+        contentMode: .aspectFit,
+        options: nil) { result, info in
+          
+          guard let image = result else {
+            return
+          }
+          
+          self.sendPhoto(image)
+      }
+      
+      // 2
+    }
+    else if let image = info[.originalImage] as? UIImage
+    {
+      sendPhoto(image)
+    }
+  }
   
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+  {
+    picker.dismiss(animated: true, completion: nil)
+  }
 }
