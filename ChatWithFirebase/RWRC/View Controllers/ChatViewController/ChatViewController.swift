@@ -29,6 +29,7 @@
 import UIKit
 import Firebase
 import MessageKit
+import MessageInputBar
 import FirebaseFirestore
 import Photos
 
@@ -47,7 +48,7 @@ final class ChatViewController: MessagesViewController
     didSet {
       DispatchQueue.main.async {
         self.messageInputBar.leftStackViewItems.forEach { item in
-          item.isEnabled = !self.isSendingPhoto
+//          item.isEnabled = !self.isSendingPhoto
         }
       }
     }
@@ -207,7 +208,6 @@ final class ChatViewController: MessagesViewController
 }
 
 // MARK: - MessagesDisplayDelegate
-
 extension ChatViewController: MessagesDisplayDelegate
 {
   func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor
@@ -261,14 +261,13 @@ extension ChatViewController: MessagesLayoutDelegate
 
 extension ChatViewController: MessagesDataSource
 {
+  func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
+    return messages.count
+  }
+  
   func currentSender() -> Sender
   {
     return Sender(id: user.uid, displayName: AppSettings.displayName)
-  }
-  
-  func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int
-  {
-    return messages.count
   }
   
   func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType

@@ -71,7 +71,9 @@ PODS:
     - gRPC-RxLibrary (= 1.8.4)
   - GTMSessionFetcher/Core (1.1.12)
   - leveldb-library (1.20)
-  - MessageKit (0.13.1)
+  - MessageInputBar/Core (0.4.1)
+  - MessageKit (2.0.0):
+    - MessageInputBar/Core
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -103,6 +105,7 @@ SPEC REPOS:
     - gRPC-RxLibrary
     - GTMSessionFetcher
     - leveldb-library
+    - MessageInputBar
     - MessageKit
     - nanopb
     - Protobuf
@@ -123,7 +126,8 @@ SPEC CHECKSUMS:
   gRPC-RxLibrary: f6b1432a667c3354c7b345affed9886c0d4ff549
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
-  MessageKit: fc74d71d9b05385138d47b3a4b7beef5c687daf1
+  MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
+  MessageKit: 29c1c87e5a396d2ca7a3f712e5171dc9aba42a1e
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
 
