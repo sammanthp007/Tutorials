@@ -25,6 +25,8 @@
 		48AC74CE20A66C2C00AA1788 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48AC74CD20A66C2C00AA1788 /* Assets.xcassets */; };
 		48AC74D120A66C2C00AA1788 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48AC74CF20A66C2C00AA1788 /* LaunchScreen.storyboard */; };
 		9C4D0879220E0C7200B83EF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C4D0878220E0C7200B83EF1 /* GoogleService-Info.plist */; };
+		9C7DB1E4222482DC0059F892 /* SendReceiveText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DB1E3222482DC0059F892 /* SendReceiveText.swift */; };
+		9C7DB1E6222482FA0059F892 /* SendReceivePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DB1E5222482FA0059F892 /* SendReceivePhoto.swift */; };
 		D9BDDBE09FF401D0C67E99FE /* Pods_RWRC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94984FD704383917A0A022C8 /* Pods_RWRC.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +54,8 @@
 		6B46E44FFE5424DB91C4A5AE /* Pods-RWRC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RWRC.release.xcconfig"; path = "Pods/Target Support Files/Pods-RWRC/Pods-RWRC.release.xcconfig"; sourceTree = "<group>"; };
 		94984FD704383917A0A022C8 /* Pods_RWRC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RWRC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C4D0878220E0C7200B83EF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9C7DB1E3222482DC0059F892 /* SendReceiveText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendReceiveText.swift; sourceTree = "<group>"; };
+		9C7DB1E5222482FA0059F892 /* SendReceivePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendReceivePhoto.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,8 +125,8 @@
 		48AC74D820A66C7A00AA1788 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9C7DB1E12224820F0059F892 /* ChatViewController */,
 				4859775220A68B1C00429CB3 /* ChannelsViewController.swift */,
-				4859776520A7AD3800429CB3 /* ChatViewController.swift */,
 				4859774E20A68AF800429CB3 /* LoginViewController.swift */,
 				4859774F20A68AF800429CB3 /* LoginViewController.xib */,
 				4859775620A68C6F00429CB3 /* NavigationController.swift */,
@@ -167,6 +171,24 @@
 				6B46E44FFE5424DB91C4A5AE /* Pods-RWRC.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		9C7DB1E12224820F0059F892 /* ChatViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9C7DB1E2222482920059F892 /* SaveAndGetFromDB */,
+				4859776520A7AD3800429CB3 /* ChatViewController.swift */,
+			);
+			path = ChatViewController;
+			sourceTree = "<group>";
+		};
+		9C7DB1E2222482920059F892 /* SaveAndGetFromDB */ = {
+			isa = PBXGroup;
+			children = (
+				9C7DB1E3222482DC0059F892 /* SendReceiveText.swift */,
+				9C7DB1E5222482FA0059F892 /* SendReceivePhoto.swift */,
+			);
+			path = SaveAndGetFromDB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,12 +326,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4859775320A68B1C00429CB3 /* ChannelsViewController.swift in Sources */,
+				9C7DB1E4222482DC0059F892 /* SendReceiveText.swift in Sources */,
 				4859775720A68C6F00429CB3 /* NavigationController.swift in Sources */,
 				4859775520A68BF500429CB3 /* AppController.swift in Sources */,
 				481A352E20A8E956008CD16B /* UICollectionView+Additions.swift in Sources */,
 				4859775020A68AF800429CB3 /* LoginViewController.swift in Sources */,
 				4859775E20A69CD500429CB3 /* UIView+Additions.swift in Sources */,
 				48AC74C720A66C2A00AA1788 /* AppDelegate.swift in Sources */,
+				9C7DB1E6222482FA0059F892 /* SendReceivePhoto.swift in Sources */,
 				4859776420A7A1BD00429CB3 /* DatabaseRepresentation.swift in Sources */,
 				4859774D20A689C700429CB3 /* AppSettings.swift in Sources */,
 				4859776820A7D34400429CB3 /* Message.swift in Sources */,

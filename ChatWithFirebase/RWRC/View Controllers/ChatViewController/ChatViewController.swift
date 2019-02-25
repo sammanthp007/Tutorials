@@ -38,12 +38,12 @@ final class ChatViewController: MessagesViewController
   private var messageListener: ListenerRegistration?
   
   private let db = Firestore.firestore()
-  private var reference: CollectionReference?
+  var reference: CollectionReference?
   
-  private let user: User
-  private let channel: Channel
+  let user: User
+  let channel: Channel
   
-  private var isSendingPhoto = false {
+  var isSendingPhoto = false {
     didSet {
       DispatchQueue.main.async {
         self.messageInputBar.leftStackViewItems.forEach { item in
@@ -53,7 +53,7 @@ final class ChatViewController: MessagesViewController
     }
   }
   
-  private let storage = Storage.storage().reference()
+  let storage = Storage.storage().reference()
   
   init(user: User, channel: Channel)
   {
@@ -206,84 +206,6 @@ final class ChatViewController: MessagesViewController
   }
 }
 
-// MARK: - Helpers
-extension ChatViewController
-{
-  private func save(_ message: Message)
-  {
-    reference?.addDocument(data: message.representation) { error in
-      if let e = error
-      {
-        print("Error sending message: \(e.localizedDescription)")
-        return
-      }
-      
-      self.messagesCollectionView.scrollToBottom()
-    }
-  }
-  
-  private func uploadImage(_ image: UIImage, to channel: Channel, completion: @escaping (URL?) -> Void)
-  {
-    guard let channelID = channel.id else
-    {
-      completion(nil)
-      return
-    }
-    
-    guard let scaledImage = image.scaledToSafeUploadSize,
-      let data = scaledImage.jpegData(compressionQuality: 0.4) else
-    {
-        completion(nil)
-        return
-    }
-    
-    let metadata = StorageMetadata()
-    metadata.contentType = "image/jpeg"
-    
-    let imageName = [UUID().uuidString, String(Date().timeIntervalSince1970)].joined()
-    storage.child(channelID).child(imageName).putData(data, metadata: metadata) { meta, error in
-      completion(meta?.downloadURL())
-    }
-  }
-  
-  private func sendPhoto(_ image: UIImage)
-  {
-    isSendingPhoto = true
-    
-    uploadImage(image, to: channel) { [weak self] url in
-      guard let `self` = self else {
-        return
-      }
-      self.isSendingPhoto = false
-      
-      guard let url = url else
-      { return }
-      
-      var message = Message(user: self.user, image: image)
-      message.downloadURL = url
-      
-      self.save(message)
-      self.messagesCollectionView.scrollToBottom()
-    }
-  }
-  
-  private func downloadImage(at url: URL, completion: @escaping (UIImage?) -> Void)
-  {
-    let ref = Storage.storage().reference(forURL: url.absoluteString)
-    let megaByte = Int64(1 * 1024 * 1024)
-    
-    ref.getData(maxSize: megaByte) { data, error in
-      guard let imageData = data else
-      {
-        completion(nil)
-        return
-      }
-      
-      completion(UIImage(data: imageData))
-    }
-  }
-}
-
 // MARK: - MessagesDisplayDelegate
 
 extension ChatViewController: MessagesDisplayDelegate
@@ -295,6 +217,10 @@ extension ChatViewController: MessagesDisplayDelegate
   
   func shouldDisplayHeader(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Bool
   {
+    if indexPath.section % 2 == 0
+    {
+      return true
+    }
     return false
   }
   
@@ -308,10 +234,19 @@ extension ChatViewController: MessagesDisplayDelegate
 
 extension ChatViewController: MessagesLayoutDelegate
 {
-//  func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize
-//  {
-//    return .zero
-//  }
+  func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize
+  {
+    let currentMessageIndex = indexPath.section
+    let indexOfMessageOneBefore = currentMessageIndex - 1
+    
+    if indexOfMessageOneBefore >= 0,
+      messages[indexOfMessageOneBefore].sender.id == messages[currentMessageIndex].sender.id
+    {
+      return .zero
+    }
+    
+    return CGSize(width: 30, height: 30)
+  }
   
   func footerViewSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize
   {
@@ -343,6 +278,15 @@ extension ChatViewController: MessagesDataSource
   
   func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString?
   {
+    let currentMessageIndex = indexPath.section
+    let indexOfMessageOneBefore = currentMessageIndex - 1
+    
+    if indexOfMessageOneBefore >= 0,
+      messages[indexOfMessageOneBefore].sender.id == messages[currentMessageIndex].sender.id
+    {
+      return nil
+    }
+      
     let name = message.sender.displayName
     return NSAttributedString(
       string: name,
@@ -369,7 +313,6 @@ extension ChatViewController: MessageInputBarDelegate
 }
 
 // MARK: - UIImagePickerControllerDelegate
-
 extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
   func imagePickerController(_ picker: UIImagePickerController,
