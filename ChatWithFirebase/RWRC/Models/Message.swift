@@ -30,6 +30,24 @@ import Firebase
 import MessageKit
 import FirebaseFirestore
 
+struct MockMediaItem: MediaItem
+{
+  var url: URL?
+  
+  var image: UIImage?
+  
+  var placeholderImage: UIImage
+  
+  var size: CGSize
+  
+  init(image: UIImage)
+  {
+    self.image = image
+    self.size = CGSize(width: 240, height: 240)
+    self.placeholderImage = UIImage()
+  }
+}
+
 struct Message: MessageType {
   
   let id: String?
@@ -37,9 +55,10 @@ struct Message: MessageType {
   let sentDate: Date
   let sender: Sender
   
-  var data: MessageData {
+  var kind: MessageKind {
     if let image = image {
-      return .photo(image)
+      let mediaItem = MockMediaItem(image: image)
+      return .photo(mediaItem)
     } else {
       return .text(content)
     }
