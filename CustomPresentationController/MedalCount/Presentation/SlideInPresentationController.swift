@@ -85,6 +85,14 @@ class SlideInPresentationController: UIPresentationController
       self.dimmingView.alpha = 0.0
     })
   }
+  
+  // 5.2: When layout is about to begin on container view, respond to layout changes in the
+  // presentation controller’s containerView
+  override func containerViewWillLayoutSubviews()
+  {
+    // Reset the presented view’s frame to fit any changes to the containerView frame
+    presentedView?.frame = frameOfPresentedViewInContainerView
+  }
 }
 
 // MARK: - Private
