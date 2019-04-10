@@ -20,6 +20,7 @@
 		0EDB647D1D3248B30000FA79 /* GamesDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDB64791D3248B30000FA79 /* GamesDataStore.swift */; };
 		0EDB99A81D32A1860005CA3E /* MedalCountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDB99A71D32A1860005CA3E /* MedalCountViewController.swift */; };
 		950818D11D480EE2003B31DC /* GamesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950818D01D480EE2003B31DC /* GamesTableViewCell.swift */; };
+		9CAFFBFD225E1BAE0021EAFF /* SlideInPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAFFBFC225E1BAE0021EAFF /* SlideInPresentationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		0EDB64791D3248B30000FA79 /* GamesDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesDataStore.swift; sourceTree = "<group>"; };
 		0EDB99A71D32A1860005CA3E /* MedalCountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedalCountViewController.swift; sourceTree = "<group>"; };
 		950818D01D480EE2003B31DC /* GamesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesTableViewCell.swift; sourceTree = "<group>"; };
+		9CAFFBFC225E1BAE0021EAFF /* SlideInPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,9 +74,9 @@
 		0E15D2261D2ADA7E00A2E90B /* MedalCount */ = {
 			isa = PBXGroup;
 			children = (
+				9CAFFBFB225E1B9B0021EAFF /* Presentation */,
 				0E49B1C11D3239EE00A8B416 /* Controllers */,
 				0EDDD5501D317792005DF417 /* Model */,
-				0E88812B1D4346BF0045C77B /* Presentation */,
 				950818CF1D480EC2003B31DC /* Views */,
 				0E15D2271D2ADA7E00A2E90B /* AppDelegate.swift */,
 				0E15D22E1D2ADA7E00A2E90B /* Assets.xcassets */,
@@ -96,13 +98,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		0E88812B1D4346BF0045C77B /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
 		0EDDD5501D317792005DF417 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +115,14 @@
 				950818D01D480EE2003B31DC /* GamesTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		9CAFFBFB225E1B9B0021EAFF /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				9CAFFBFC225E1BAE0021EAFF /* SlideInPresentationManager.swift */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CAFFBFD225E1BAE0021EAFF /* SlideInPresentationManager.swift in Sources */,
 				0EDB647B1D3248B30000FA79 /* MedalWinner.swift in Sources */,
 				0E15D22A1D2ADA7E00A2E90B /* MainViewController.swift in Sources */,
 				0EDB64651D32403B0000FA79 /* GamesTableViewController.swift in Sources */,

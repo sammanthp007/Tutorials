@@ -31,6 +31,23 @@ final class MainViewController: UIViewController {
   @IBOutlet weak var logoImageView: UIImageView!
 
   // MARK: - Properties
+  /**
+   The handler for transitioning delegate. We will use this reference when assigning the
+   transitioning delegate before presentation.
+   
+   Because
+   1. transitioningDelegate is a weak property, so you must keep a strong reference to the delegate
+   somewhere.
+   
+   2. However, you don’t to keep this reference on the presented controller itself because you might
+   want to re-use it on different presentation styles.
+   
+   3. Adding it to MainViewController keeps the strong reference on the presenting controller.
+   
+   4. Deciding the type of presentation to use is now the presenting controller’s task.
+   */
+  lazy var slideInTransitioningDelegate = SlideInPresentationManager()
+  
   private let dataStore = GamesDataStore()
   fileprivate var presentedGames: Games? {
     didSet {
