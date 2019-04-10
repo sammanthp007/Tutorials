@@ -106,7 +106,7 @@ class SlideInPresentationController: UIPresentationController
     })
   }
   
-  // 5.2: When layout is about to begin on container view, respond to layout changes in the
+  // 5.2: When layout is about to begin on views of container view, respond to layout changes in the
   // presentation controller’s containerView
   override func containerViewWillLayoutSubviews()
   {
