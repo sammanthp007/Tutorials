@@ -22,7 +22,8 @@
 
 import UIKit
 
-final class MainViewController: UIViewController {
+final class MainViewController: UIViewController
+{
 
   // MARK: - IBOutlets
   @IBOutlet weak var yearLabel: UILabel!
@@ -56,21 +57,27 @@ final class MainViewController: UIViewController {
   }
 
   // MARK: - View Life Cycle
-  override func viewDidLoad() {
+  override func viewDidLoad()
+  {
     super.viewDidLoad()
 
     presentedGames = nil
   }
 
   // MARK: - Navigation
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if let controller = segue.destination as? GamesTableViewController {
-      if segue.identifier == "SummerSegue" {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+  {
+    if let controller = segue.destination as? GamesTableViewController
+    {
+      if segue.identifier == "SummerSegue"
+      {
         controller.gamesArray = dataStore.summer
         
         // 1.0
         slideInTransitioningDelegate.direction = .left
-      } else if segue.identifier == "WinterSegue" {
+      }
+      else if segue.identifier == "WinterSegue"
+      {
         controller.gamesArray = dataStore.winter
         
         // 1.1
@@ -84,7 +91,8 @@ final class MainViewController: UIViewController {
       // 3 The modalPresentationStyle is .custom to make the presented controller expect a custom
       // presentation instead of an iOS default presentation
       controller.modalPresentationStyle = .custom
-    } else if let controller = segue.destination as? MedalCountViewController {
+    } else if let controller = segue.destination as? MedalCountViewController
+    {
       controller.medalCount = presentedGames?.medalCount
       
       // 4 Same as 1.0 - 3, but for Medal Count View Controller, with different direction
@@ -96,15 +104,18 @@ final class MainViewController: UIViewController {
 }
 
 // MARK: - Private
-private extension MainViewController {
+private extension MainViewController
+{
 
-  func configurePresentedGames() {
-    guard let presentedGames = presentedGames else {
-      logoImageView.image = UIImage(named: "medals")
-      hostLabel.text = nil
-      yearLabel.text = nil
-      medalCountButton.isHidden = true
-      return
+  func configurePresentedGames()
+  {
+    guard let presentedGames = presentedGames
+      else {
+        logoImageView.image = UIImage(named: "medals")
+        hostLabel.text = nil
+        yearLabel.text = nil
+        medalCountButton.isHidden = true
+        return
     }
 
     logoImageView.image = UIImage(named: presentedGames.flagImageName)
@@ -115,9 +126,10 @@ private extension MainViewController {
 }
 
 // MARK: - GamesTableViewControllerDelegate
-extension MainViewController: GamesTableViewControllerDelegate {
-
-  func gamesTableViewController(controller: GamesTableViewController, didSelectGames selectedGames: Games) {
+extension MainViewController: GamesTableViewControllerDelegate
+{
+  func gamesTableViewController(controller: GamesTableViewController, didSelectGames selectedGames: Games)
+  {
     presentedGames = selectedGames
     dismiss(animated: true)
   }
