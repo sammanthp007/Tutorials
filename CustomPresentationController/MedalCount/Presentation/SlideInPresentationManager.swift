@@ -35,5 +35,14 @@ class SlideInPresentationManager: NSObject
  */
 extension SlideInPresentationManager: UIViewControllerTransitioningDelegate
 {
-  
+  func presentationController(forPresented presented: UIViewController,
+                              presenting: UIViewController?,
+                              source: UIViewController) -> UIPresentationController?
+  {
+    let presentationController = SlideInPresentationController(presentedViewController: presented,
+                                                               presenting: presenting,
+                                                               direction: direction)
+    
+    return presentationController
+  }
 }
