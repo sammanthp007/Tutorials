@@ -27,6 +27,26 @@ class SlideInPresentationController: UIPresentationController
   // 1 Declares a direction property to represent the direction of the presentation.
   private var direction: PresentationDirection
   
+  // 5.3.1 In addition to calculating the size of the presented view, you need to return its full
+  // frame
+  override var frameOfPresentedViewInContainerView: CGRect {
+    // 5.3.1.1
+    var frame: CGRect = .zero
+    frame.size = size(forChildContentContainer: presentedViewController,
+                      withParentContainerSize: containerView!.bounds.size)
+    
+    // 5.3.1.2
+    switch direction {
+    case .right:
+      frame.origin.x = containerView!.frame.width*(1.0/3.0)
+    case .bottom:
+      frame.origin.y = containerView!.frame.height*(1.0/3.0)
+    default:
+      frame.origin = .zero
+    }
+    return frame
+  }
+  
   // 2 Declares an initializer that accepts the presented and presenting view controllers, as well
   // as the presentation direction.
   init(presentedViewController: UIViewController,
@@ -92,6 +112,22 @@ class SlideInPresentationController: UIPresentationController
   {
     // Reset the presented view’s frame to fit any changes to the containerView frame
     presentedView?.frame = frameOfPresentedViewInContainerView
+  }
+  
+  // 5.3.0: Give the size of the presented view controller’s content to the presentation controller
+  // This method receives the content container and parent view’s size, and then it calculates the
+  // size for the presented content. In this code, you restrict the presented view to 2/3 of the
+  // screen by returning 2/3 the width for horizontal and 2/3 the height for vertical presentations
+  override func size(forChildContentContainer container: UIContentContainer,
+                     withParentContainerSize parentSize: CGSize) -> CGSize
+  {
+    switch direction
+    {
+    case .left, .right:
+      return CGSize(width: parentSize.width*(2.0/3.0), height: parentSize.height)
+    case .bottom, .top:
+      return CGSize(width: parentSize.width, height: parentSize.height*(2.0/3.0))
+    }
   }
 }
 
