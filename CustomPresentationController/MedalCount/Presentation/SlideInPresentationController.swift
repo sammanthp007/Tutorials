@@ -71,6 +71,20 @@ class SlideInPresentationController: UIPresentationController
       self.dimmingView.alpha = 1.0
     })
   }
+  
+  // 5.1 Hide the dimming view when the presented controller is dismissed
+  override func dismissalTransitionWillBegin()
+  {
+    guard let coordinator = presentedViewController.transitionCoordinator else
+    {
+      dimmingView.alpha = 0.0
+      return
+    }
+    
+    coordinator.animate(alongsideTransition: { _ in
+      self.dimmingView.alpha = 0.0
+    })
+  }
 }
 
 // MARK: - Private
