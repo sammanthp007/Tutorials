@@ -67,12 +67,30 @@ final class MainViewController: UIViewController {
     if let controller = segue.destination as? GamesTableViewController {
       if segue.identifier == "SummerSegue" {
         controller.gamesArray = dataStore.summer
+        
+        // 1.0
+        slideInTransitioningDelegate.direction = .left
       } else if segue.identifier == "WinterSegue" {
         controller.gamesArray = dataStore.winter
+        
+        // 1.1
+        slideInTransitioningDelegate.direction = .right
       }
+      
       controller.delegate = self
+      // 2. Set the transitioning delegate of the presented view controller to custom
+      controller.transitioningDelegate = slideInTransitioningDelegate
+      
+      // 3 The modalPresentationStyle is .custom to make the presented controller expect a custom
+      // presentation instead of an iOS default presentation
+      controller.modalPresentationStyle = .custom
     } else if let controller = segue.destination as? MedalCountViewController {
       controller.medalCount = presentedGames?.medalCount
+      
+      // 4 Same as 1.0 - 3, but for Medal Count View Controller, with different direction
+      slideInTransitioningDelegate.direction = .bottom
+      controller.transitioningDelegate = slideInTransitioningDelegate
+      controller.modalPresentationStyle = .custom
     }
   }
 }
