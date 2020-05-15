@@ -1,24 +1,34 @@
 import Foundation
 
-struct ConsoleLogged<Value> {
-    private var val: Value
+// You can think of property wrapper as a regular property, which delegates its get and set to some
+// other type.
+@propertyWrapper
+struct ConsoleLogged<Type> {
+    private var val: Type
 
-    var wrappedValue: Value {
+    init(wrappedValue: Type) {
+        self.val = wrappedValue
+    }
+
+    var wrappedValue: Type {
         set {
             val = newValue
             print("Value update to \(newValue)")
         }
-        get {
-            return val
-        }
-    }
-
-    init(val: Value) {
-        self.val = val
+        get { return val }
     }
 }
 
-var num = ConsoleLogged<Int>(val: 3)
-
+// Logging value changes (without using property wrapper)
+var num = ConsoleLogged<Int>(wrappedValue: 3)
 num.wrappedValue = 7
 num.wrappedValue = 8
+
+// Property wrappers are not yet supported in top-level code
+struct SecondLevelCode {
+    @ConsoleLogged var cLoggedNum: Int = 4
+}
+
+var num2 = SecondLevelCode()
+num2.cLoggedNum = 5
+num2.cLoggedNum = 6
