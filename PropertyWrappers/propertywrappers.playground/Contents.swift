@@ -1,7 +1,11 @@
 import Foundation
 
-// You can think of property wrapper as a regular property, which delegates its get and set to some
-// other type.
+/// You can think of property wrapper as a regular property, which delegates its get and set to some
+/// other type.
+///
+/// There are two requirements for a property wrapper type:
+/// 1. It must be defined with the attribute @propertyWrapper.
+/// 2. It must have a wrappedValue property.
 @propertyWrapper
 struct ConsoleLogged<Type> {
     private var val: Type
@@ -26,6 +30,7 @@ num.wrappedValue = 8
 
 // Property wrappers are not yet supported in top-level code
 struct SecondLevelCode {
+    // The attribute @ConsoleLogged is a syntactic sugar, which translates into the definition above
     @ConsoleLogged var cLoggedNum: Int = 4
 }
 
