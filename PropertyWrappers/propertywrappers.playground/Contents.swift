@@ -21,6 +21,10 @@ struct ConsoleLogged<Type> {
         }
         get { return val }
     }
+
+    func usefulFunc() {
+        print("Useful wrapper method")
+    }
 }
 
 // Logging value changes (without using property wrapper)
@@ -32,8 +36,15 @@ num.wrappedValue = 8
 struct SecondLevelCode {
     // The attribute @ConsoleLogged is a syntactic sugar, which translates into the definition above
     @ConsoleLogged var cLoggedNum: Int = 4
+
+    func doSomethingUseful() {
+        // We can access the wrapper type by adding an underscore to the variable name
+        _cLoggedNum.usefulFunc()
+    }
 }
 
 var num2 = SecondLevelCode()
 num2.cLoggedNum = 5
 num2.cLoggedNum = 6
+
+num2.doSomethingUseful()
